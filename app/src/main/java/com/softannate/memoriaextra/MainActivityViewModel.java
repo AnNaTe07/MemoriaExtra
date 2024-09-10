@@ -27,12 +27,15 @@ public class MainActivityViewModel extends ViewModel {
             Log.d("MainActivityViewModel", "Nota agregada y lista actualizada: " + notasActuales);
         }
     }
+
+    //método para que la nota inicie en mayúscula
     private String iniciaMayuscula(String textoNota) {
         if (textoNota == null || textoNota.isEmpty()) {
             return textoNota;// Si el texto es null o está vacío, lo retorno
         }
         return textoNota.substring(0, 1).toUpperCase() + textoNota.substring(1);// Convierto la primera letra a mayúscula y concateno el resto
     }
+
     // Obtengo la lista de notas
     public LiveData<List<String>> getNotas() {
         return notas;
