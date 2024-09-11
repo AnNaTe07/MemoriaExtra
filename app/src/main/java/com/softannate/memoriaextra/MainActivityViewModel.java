@@ -15,18 +15,28 @@ public class MainActivityViewModel extends ViewModel {
     // MutableLiveData para mantener la lista de notas
     private final MutableLiveData<List<String>> notas = new MutableLiveData<>(new ArrayList<>());
 
+    private final MutableLiveData<String> menToast = new MutableLiveData<>();
+
     // Añado una nueva nota a la lista
     public void agregarNota(String nota) {
         // Obtengo la lista actual de notas
         List<String> notasActuales = notas.getValue();
-        if (notasActuales != null && !nota.isEmpty()) {
-            String notaConAsterisco = "* " + iniciaMayuscula(nota);//añado asterisco al inicio yllamo a fncion para comenzar nota en mayúscula
-            notasActuales.add(notaConAsterisco);// Agrego la nota modificada a la lista de notas
-            Collections.sort(notasActuales); // Ordeno alfabéticamente
-            notas.setValue(notasActuales); // Actualizo el LiveData con la lista modificada
-            Log.d("MainActivityViewModel", "Nota agregada y lista actualizada: " + notasActuales);
+        if (notasActuales == null) {
+            notasActuales = new ArrayList<>();
         }
-    }
+        if (nota.isEmpty()) {
+            menToast.setValue("Ingrese una nota");
+            return;
+        }
+
+                String notaConAsterisco = "* " + iniciaMayuscula(nota);//añado asterisco al inicio yllamo a fncion para comenzar nota en mayúscula
+                notasActuales.add(notaConAsterisco);// Agrego la nota modificada a la lista de notas
+                Collections.sort(notasActuales); // Ordeno alfabéticamente
+                notas.setValue(notasActuales); // Actualizo el LiveData con la lista modificada
+                menToast.setValue("Nota guardada");
+                Log.d("MainActivityViewModel", "Nota agregada y lista actualizada: " + notasActuales);
+            }
+
 
     //método para que la nota inicie en mayúscula
     private String iniciaMayuscula(String textoNota) {
@@ -39,6 +49,10 @@ public class MainActivityViewModel extends ViewModel {
     // Obtengo la lista de notas
     public LiveData<List<String>> getNotas() {
         return notas;
+    }
+    //obtengo el mensaje Toast
+    public LiveData<String> getMenToast(){
+        return menToast;
     }
 
     // Limpia la lista de notas, seteo a una nueva vacia
