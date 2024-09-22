@@ -3,13 +3,15 @@ package com.softannate.memoriaextra.ui.Listar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.softannate.memoriaextra.MainActivity;
 import com.softannate.memoriaextra.MainActivityViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListarFragmentViewModel extends ViewModel {
 
-    private final MutableLiveData<List<String>> notas=new MutableLiveData<>();
+    private final MutableLiveData<List<String>> mNotas=new MutableLiveData<>();
 
     public ListarFragmentViewModel() {
 
@@ -17,11 +19,12 @@ public class ListarFragmentViewModel extends ViewModel {
 
     // Obtener la lista de notas
     public LiveData<List<String>> getNotas() {
-        return notas;
+        mNotas.setValue(MainActivity.notas);
+        return mNotas;
     }
 
     // Limpiar la lista de notas
     public void clearNotas() {
-          notas.setValue(new ArrayList<>());
+        mNotas.setValue(new ArrayList<>());
         }
 }

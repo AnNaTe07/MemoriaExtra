@@ -1,4 +1,4 @@
-package com.softannate.memoriaextra.ui.fragments;
+package com.softannate.memoriaextra.ui.Salir;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

@@ -38,7 +38,7 @@ public class ListarFragment extends Fragment {
        //vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(MainActivityViewModel.class);
 
         // Creo una instancia del adaptador para RecyclerView con una lista vacía inicial
-        adaptador=new NotaAdaptador(new ArrayList<>(), LayoutInflater.from(getContext()));
+        adaptador=new NotaAdaptador(new ArrayList<>(), getLayoutInflater());
         binding.rv.setAdapter(adaptador);// Configuro el RecyclerView con el adaptador
         //LayoutManager para el RecyclerView para la disposición vertical de elementos
         binding.rv.setLayoutManager(new LinearLayoutManager(getContext()));
